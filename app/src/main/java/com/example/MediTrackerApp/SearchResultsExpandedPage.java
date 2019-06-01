@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 /**
  * @author Lisa Chen and Ben You
+ * Lisa added minor edit only to ensure product and its component info is passed to this page
  */
 public class SearchResultsExpandedPage extends AppCompatActivity {
 
@@ -68,22 +69,15 @@ public class SearchResultsExpandedPage extends AppCompatActivity {
         productSKUTextView.setText("Product ID: " +resultExpandedProductSKUString);
         suppplierNameTextView.setText("Supplier: " +resultExpandedSupplierString);
 
-
-
         //Ben -->
         //TODO: (1) Need to create another listview similar to the custom one i made for the compoment page.
         //TODO: (2) Maybe need to pass the arraylist of the Component page to here and display it.
         //TODO: (3) Will need to replace the productname/SKU/Supplier if they continue to click on it. (
         //              Use stack on the arraylist like if arraylist is empty then gtfo.
 
-
-
-
-
         //Laura -->
         //TODO: (4) Create a top-right menu bar that guides the user back to the search area. (will need to dispose data?)
         //TODO: (5) OPTIONAL: add a logout button or some shit.
-
 
         //ListView Details:
 
@@ -95,9 +89,6 @@ public class SearchResultsExpandedPage extends AppCompatActivity {
 
         //sets the listview to the custom adapter
         subcomponentListView.setAdapter(customAdapter);
-
-
-
     }
 
     //CustomAdapter for the custom ListView Display (these methods are generated automatically to handle the custom ListView)
@@ -142,26 +133,7 @@ public class SearchResultsExpandedPage extends AppCompatActivity {
                 suppplierNameTextView.setText("Component Supplier: " +resultExpandedComponentSupplierString.get(position));
 //            }
 
-
-            //System.out.println("String Array contents: " +productNameStringArray[position] + " | position#: " +position);
-            //System.out.println("--ArayList stuff: "  + productNameArrayList.get(position)+" | arraylistContents: " +productNameArrayList.size());
-
-            //textview_name.setText(productNameString[0]=productSKUSting);
-
-
             return convertView;
         }
     }
-
-
-    /*
-    public boolean onOptionsItemSelected(MenuItem item){
-        Intent myIntent = new Intent(this, SearchResultPage.class);
-        startActivityForResult(myIntent, 0);
-        return true;
-    }*/
-
-
-
-
 }

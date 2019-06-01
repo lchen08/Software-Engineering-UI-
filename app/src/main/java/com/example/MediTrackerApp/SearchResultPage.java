@@ -35,6 +35,7 @@ import java.util.ArrayList;
 
 /**
  * @author Lisa Chen and Ben You
+ * Lisa - only edited to add the API connection and data retrieval
  */
 public class SearchResultPage extends AppCompatActivity {
 
@@ -46,13 +47,6 @@ public class SearchResultPage extends AppCompatActivity {
     Context context;
     boolean asyncTaskDone = false;
     ArrayList<Component> currentArray;
-
-
-    //Dummy data test 1. can remove once we get the official data.
-    String[] productSKUStringArray = {"0000000000000000000000","11111111111111111111112222222222222222222222222222222222222222","2","3","4","5"};
-    String[] productNameStringArray = {"Computer","Pokemon","Tomogachi","Jojo's Bizarre Adventure: HOLY SHIT I GOTA SHIT TON OF TEXT I GATTA REWWWEKK", "Maple Story","Weed"};
-    String[] supplierStringArray = {"Sensei","Ash","Ben","GIOGIO","Nexon","Snoop Dog"};
-
 
     //These variables are to hold the information from the search parameter variables that passed over
     String productSKUString,productNameString,supplierNameString,blockChainIDString;
@@ -80,8 +74,6 @@ public class SearchResultPage extends AppCompatActivity {
         //Redirect's activityView to the called activity
         setContentView(R.layout.activity_search_result_page);
 
-        //Toolbar toolbar = findViewById(R.id.toolbar);
-
         //Changes the actionbar Title
         getSupportActionBar().setTitle("Search Results:");
 
@@ -97,26 +89,20 @@ public class SearchResultPage extends AppCompatActivity {
             //need to pass context (you can only retrieve during onCreate)
             context = getApplicationContext();
 
-            // (!) Component Data
+            // Component Data
             ArrayList<Component> queryData = TestDataGenerator.getQueryData(context);
             ArrayList<Component> componentData = TestDataGenerator.getComponentData(context);
 
             ComponentTestGenerator test = new ComponentTestGenerator();
             ArrayList<Component> testSamples = test.getTestProducts();
 
-            //SearchResultPage itemlist populate
+            //SearchResultPage itemlist populate with test data
             if (queryData != null) {
 //                populateScreenArray(queryData);
             }
 
-            //Component Data: store component stuff here and pass it to page 4. (searchresultexpanded)
             if (componentData != null) {
                 for (Component item : componentData) {
-                    /*Log.d("LisaUnitTest", "Name: " + item.getName() + ", ProductID: " +
-                            item.getSKU() + ",Supplier: " + item.getSupplier());
-                            */
-                    //TODO this is for component data - a different screen
-
                     subCompProductNameArrayList.add(item.getName());
                     subCompProductIDArrayList.add(item.getSKU());
                     subCompSupplierArrayList.add(item.getSupplier());
@@ -126,14 +112,11 @@ public class SearchResultPage extends AppCompatActivity {
                             + " | arraysize: " +subCompProductNameArrayList.size());
 
                 }
-                System.out.println("(!!!!!!) STOP ADDING SHIT ====================================================");
             }
 
 
             if (testSamples != null){
                 for (Component item : testSamples){
-
-
                     MedProduct parent = (MedProduct) item;
                     System.out.println("-----> parent name: " +parent.getName());
 
@@ -142,14 +125,11 @@ public class SearchResultPage extends AppCompatActivity {
                     System.out.println(" ---> Size: " +item.getSubComponents().size());
 
                     //subCompProductNameArrayList.add();
-
-
                 }
 
                 currentArray = testSamples;
                 populateScreenArray(testSamples);
             }
-
 
         //Gets the listview from searchresultpage
         listview = (ListView)findViewById(R.id.listView);
@@ -178,7 +158,6 @@ public class SearchResultPage extends AppCompatActivity {
             }
         });
 
-
         //ComponentTestGenerator test = new ComponentTestGenerator();
         //ArrayList<Component> testSamples = test.getTestProducts();
     }
@@ -200,12 +179,9 @@ public class SearchResultPage extends AppCompatActivity {
         resetCompArrays();
         populateComponentArray(subcomponents);
 
-
-//        for (int i = 0; i < subcomponents.size(); i++) {
-            intent.putExtra("passComponentProductName", subCompProductNameArrayList);
-            intent.putExtra("passComponentProductSKU", subCompProductIDArrayList);
-            intent.putExtra("passComponentSupplierName", subCompSupplierArrayList);
-//        }
+        intent.putExtra("passComponentProductName", subCompProductNameArrayList);
+        intent.putExtra("passComponentProductSKU", subCompProductIDArrayList);
+        intent.putExtra("passComponentSupplierName", subCompSupplierArrayList);
 
         reassignProductArrayList();
     }
@@ -220,7 +196,6 @@ public class SearchResultPage extends AppCompatActivity {
      * Populates the array that is displayed onto the UI with the MedProduct data.
      * @param data The data to display
      */
-    //Product/SKU/Suppl;ier/OrderDate Data
     private void populateScreenArray(ArrayList<Component> data) {
         for (Component item : data) {
             MedProduct prod = (MedProduct) item;
@@ -233,7 +208,6 @@ public class SearchResultPage extends AppCompatActivity {
             orderDateArrayList.add(prod.getOrderDate());
 
             System.out.println("==Product Name: " +prod.getName()+" | productID: " +prod.getSKU() +" | ArraySize: " +productNameArrayList.size()+ " |subcomponent: " +prod.getSubComponents() );
-
         }
 
         System.out.println("======================================================");
@@ -247,14 +221,10 @@ public class SearchResultPage extends AppCompatActivity {
             subCompProductIDArrayList.add(item.getSKU());
             subCompSupplierArrayList.add(item.getSupplier());
         }
-
     }
-
-
 
     @Override
     protected void onResume() {
-
         super.onResume();
         queryTask = new SearchTask();
 
@@ -263,15 +233,15 @@ public class SearchResultPage extends AppCompatActivity {
         //0=Etherium, 1=Hyper Ledger, 2=Open Chain
         //return 0 if user enters etherium
 
-        //TODO you still need to pass the blockchain reference from the dropdown
-        queryTask.execute("1", "ABC123", null, null);
+        //turned off because blockchain is taken down for the class project
+//        queryTask.execute("1", "ABC123", null, null);
 
 //        don't populate data until it is complete
 //        while (!asyncTaskDone);
 
-        while (productAPIResults == null);
-        if (productAPIResults != null)
-            populateScreenArray(productAPIResults);
+//        while (productAPIResults == null);
+//        if (productAPIResults != null)
+//            populateScreenArray(productAPIResults);
     }
 
     //CustomAdapter for the custom ListView Display (these methods are generated automatically to handle the custom ListView)
