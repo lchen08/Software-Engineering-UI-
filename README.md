@@ -22,7 +22,7 @@ The class is split to multiple teams of 3-5 where each team is responsible for d
 **Test Case Spec (QA)**
 - Test Strategy/Approach
 - Test Plan
-  - Tracibility Matrix
+  - Traceability Matrix
   - Test Cases
 - Test Results Summary
 
