@@ -1,5 +1,5 @@
 # CS4800 Software Engineering Project - Mobile App for Blockchain Class Project
-Authors: Hao Ming You, Lisa Chen, Johnson Wei, Laura Campos, Jin Kim
+Team: Hao Ming You, Lisa Chen, Johnson Wei, Laura Campos, Jin Kim
 
 ## Description
 
