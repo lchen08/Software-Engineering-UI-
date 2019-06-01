@@ -27,7 +27,7 @@ The class is split to multiple teams of 3-5 where each team is responsible for d
 - Test Results Summary
 
 ## Project Summary
-Our team was responsible for Mobile UI where are code submission can be found here. The project is currently not running; the Blockchains that connect to the API that interfaces with our project are all taken down due to running costs and this being a short-term project. A test case was added to demonstrate how the application works.
+Our team was responsible for Mobile UI where are code submission can be found here. We used Android Studio to implement the project and was designed with the intention to be compatible up to Android Lollipop OS. The project is currently not running; the Blockchains that connect to the API that interfaces with our project are all taken down due to running costs and this being a short-term project. A test case was added to demonstrate how the application works.
 
 Furthermore, the team responsible for creating the Component Database never completed the work; thus, the code for handling components are commented out as it was not clear how the other team would implement the component search. 
 
